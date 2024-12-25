@@ -1,0 +1,30 @@
+﻿
+@model Webtask.Models.Home
+
+<div class="mt-2" style="width:50%">
+<form asp-action="UpdatePerson">
+    <input asp-for="Id"type="hidden" class="form-control">
+    <h2>Updateperson</h2>
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Name</label>
+        <input asp-for="Name" type="text" class="form-control">
+        <span class="text-danger" asp-validation-for="Name"></span>
+      </div>
+
+    <div class="mb-3">
+        <label asp-for="EmailAddress" class="form-label">EmailAddress</label>
+        <input asp-for="EmailAddress" type="text" class="form-control">
+        <span class="text-danger" asp-validation-for="EmailAddress"></span>
+    </div>
+    @if(TempData["msg"]!=null)
+    {
+        <div class="mb-3">
+            @TempData["msg"]
+         </div>
+    }
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a href="/home/DisplayPerson" class="btn btn-primary">All Person</a>
+</form>
+
+    
+</div>

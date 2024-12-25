@@ -1,0 +1,73 @@
+﻿@model IEnumerable< Webtask.Models.Home>
+
+@{
+
+}
+<div class="mt-2" style="width:50%"></div>
+<div class="row">
+ 
+<h2>Person</h2>
+
+
+<div class="col-md-4">
+    <a href="/Home/Addperson" class="btn-btn-primary">Addperson</a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>EmailAddress</th>
+                    <th>Action</th>
+                    </tr>
+                    @foreach(var person in Model)
+                    {
+                    <tr>
+                        <td>
+                            @person.Name
+                        </td>
+                        <td>
+                            @person.EmailAddress
+                        </td>
+                        <td>
+                            <a class="btn btn-success" href="/Home/UpdatePerson?id=@person.Id">Edit</a>
+                            <a class="btn btn-danger" href="/Home/DeletePerson?id=@person.Id">Delete</a>
+
+                        </td>
+                    </tr>
+                }
+            </thead>
+        </table>
+    <nav aira-label="Page navigation example" class="mt-4">
+        <ul class="pagination">
+            @if (ViewBag.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="DisplayPerson" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
+                </li>
+            }
+
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                if(i>=ViewBag.CurrentPage -2 && i<=ViewBag.CurrentPage + 2)
+                {
+                    <li class="page-item @(i == ViewBag.CurrentPage ? "active":"")">
+                        <a class="page-link" asp-action="DisplayPerson" asp-route-page="@i">@i</a>
+                </li>
+                }
+            }
+
+            @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="DisplayPerson" asp-route-page="@(ViewBag.CurrentPage+1)">Next</a>
+                </li>
+            }
+        </ul>
+    </nav>
+
+        </div>
+     
+
+
+
+      
